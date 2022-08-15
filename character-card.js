@@ -35,15 +35,19 @@ class CharacterCard extends HTMLElement {
         }) 
     }
     
-        async connectedCallback(){
+    async connectedCallback(){
 
-            this.attachShadow({mode: 'open'})
-            
-            this.id = this.getAttribute("id");
-            this.populateWithCharacter(this.id)
+        this.attachShadow({mode: 'open'})
         
-            this.addEventListener('click', event =>
-                this.getRandomCharacter(event)); 
+        this.id = this.getAttribute("id");
+        this.populateWithCharacter(this.id)
+    
+        this.addEventListener('click', event =>
+            this.getRandomCharacter(event)); 
+    }
+
+    disconnectedCallbac(){
+        this.removeEventListener("click")
     }
 
 
