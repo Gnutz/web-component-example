@@ -53,23 +53,31 @@ class CharacterCard extends HTMLElement {
             "created": "2017-11-05T08:54:29.343Z"
             }`)
 
+            name = character["name"]
+            let status = character["status"]
+            let species = character["species"]
+
 
         this.innerHTML =`<article class="characterCard__Wrapper-sc-1ejywvi-0 bEklxv">
-        <div class="characterCard__ImgWrapper-sc-1ejywvi-1 fkUcVI"><img src="https://rickandmortyapi.com/api/character/avatar/291.jpeg" alt="${character["name"]}"></div>
+        <div class="characterCard__ImgWrapper-sc-1ejywvi-1 fkUcVI"><img src="https://rickandmortyapi.com/api/character/avatar/291.jpeg" alt="${name}"></div>
         <div class="characterCard__ContentWrapper-sc-1ejywvi-2 isMAic">
            <div class="section">
               <a href="https://rickandmortyapi.com/api/character/291" rel="nofollow noopener noreferrer" target="_blank" class="externalLink__ExternalLink-sc-1lixk38-0 ffGNdR">
-                 <h2>${character["name"]}</h2>
+                 <h2>${name}</h2>
               </a>
-              <span class="status"><span class="status__icon"></span> ${character["status"]} - Human</span>
+              <span class="status"><span class="status__icon"></span> ${status} - ${species}</span>
            </div>
-           <div class="section"><span class="text-gray">Last known location:</span><a href="https://rickandmortyapi.com/api/location/3" rel="nofollow noopener noreferrer" target="_blank" class="externalLink__ExternalLink-sc-1lixk38-0 ffGNdR">Citadel of Ricks</a></div>
+           <div class="section"><span class="text-gray">Last known location:</span>
+           <a href="https://rickandmortyapi.com/api/location/3" rel="nofollow noopener noreferrer" target="_blank" class="externalLink__ExternalLink-sc-1lixk38-0 ffGNdR">
+           ${location}
+           </a>
+           </div>
            <div class="section"><span class="text-gray">First seen in:</span><a href="https://rickandmortyapi.com/api/episode/28" rel="nofollow noopener noreferrer" target="_blank" class="externalLink__ExternalLink-sc-1lixk38-0 ffGNdR">The Ricklantis Mixup</a></div>
         </div>
      </article>`
-
-
     }
+
+    
 
 
 }
