@@ -4,26 +4,26 @@ export default {
                 ${this.html(props)}`;
     },
     html(p) {
-        return `<div> <article class="characterCard__Wrapper-sc-1ejywvi-0 bEklxv">
-        <div class="characterCard__ImgWrapper-sc-1ejywvi-1 fkUcVI"><img src="${p.image}"alt="${p.name}"></div>
+        return `
+        <article class="characterCard__Wrapper-sc-1ejywvi-0 bEklxv">
+        <div class="characterCard__ImgWrapper-sc-1ejywvi-1 fkUcVI"><img src="${p.image}" alt="${p.name}"></div>
         <div class="characterCard__ContentWrapper-sc-1ejywvi-2 isMAic">
            <div class="section">
               <a href="https://rickandmortyapi.com/api/character/291" rel="nofollow noopener noreferrer" target="_blank" class="externalLink__ExternalLink-sc-1lixk38-0 ffGNdR">
-                 <h2>${p.name}</h2>
+                 <h2><slot name="name">"${p.name}</slot></h2>
               </a>
-              <span class="status"><span class="status__icon"></span> ${p.status} - ${p.species}</span>
+              <span class="status"><span class="status__icon"></span> <slot name="status">"${p.status}</slot>  &nbsp;-&nbsp;  <slot name="species">${p.species}</slot></span>
            </div>
            <div class="section"><span class="text-gray">Last known location:</span>
            <a href="https://rickandmortyapi.com/api/location/3" rel="nofollow noopener noreferrer" target="_blank" class="externalLink__ExternalLink-sc-1lixk38-0 ffGNdR">
-           ${p.location}
+           <slot name="location">${p.location}</slot>
            </a>
            </div>
            <div class="section"><span class="text-gray">First seen in:</span><a href="https://rickandmortyapi.com/api/episode/28" rel="nofollow noopener noreferrer" target="_blank" class="externalLink__ExternalLink-sc-1lixk38-0 ffGNdR">
-            ${p.firstEpisode}
+           <slot name="firstEpisode">${p.firstEpisode}</slot>
            </a></div>
         </div>
-     </article>
-     </div`
+        </article>`
     },
     css(props){
         return `<style>
