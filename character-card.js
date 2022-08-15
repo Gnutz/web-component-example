@@ -137,27 +137,6 @@ class CharacterCard extends HTMLElement {
         this.shadowRoot.appendChild(template.content.cloneNode(true))
     }
 
-   /*  connectedCallBack(){
-        this.attachShadow({mode: 'open'})
-        this.shadowRoot.appendChild(template.content.cloneNode(true))
-    }
- */
-    static get observedAttributes(){
-        return ['id'];
-    }
-
-    
-    getRandomId() {
-        return Math.floor(Math.random() * NUMBEROFCHARACTERS + 1); 
-    }
-
-
-    attributeChangedCallback(name, oldVal, newVal){
-        if (name === 'id'){
-          this.populateWithCharacter(newVal)
-        }
-    }
-
     populateWithCharacter(id){
         character = {}
         this.shadowRoot.innerHTML = '';
@@ -165,68 +144,6 @@ class CharacterCard extends HTMLElement {
         this.shadowRoot.querySelector('img').src = character[""]
 
     }
-
-    set id(value){
-        this.id = value < NUMBEROFCHARACTERS ? value : NUMBEROFCHARACTERS;
-    }
-    
-        /*async connectedCallback(){
-
-        let id = this.getAttribute("id");
-        let character = await this.getCharacterById(id)
-
-
-        let name = character["name"]
-        let image = character["image"]
-        let status = character["status"]
-        let species = character["species"]
-        let location = character["location"]["name"]
-
-
-        let episodeUrl =  character["episode"][0]
-        let firstEpisode = (await this.getEpisodeByUrl(episodeUrl))["name"];
-
-
-        this.innerHTML = Template.render({
-            name: name,
-            image: image,
-            status: status,
-            species: species,
-            location: location,
-            firstEpisode: firstEpisode
-        }) 
-
-        this.addEventListener('click', event =>
-            this.getRandomCharacter(event)); 
-     
-    } */
-
-
-    async getCharacterById(id){
-        let result = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
-        let character =  await result.json()
-        return character
-    }
-
-    async getRandomCharacter(){
-        let id = this.getRandomId()
-        return await this.getCharacterById(id)
-    }
-
-    async getEpisodeById(id){
-        let result = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
-        let episode =  await result.json()
-        return episode
-
-    }
-
-    async getEpisodeByUrl(url){
-        let result = await fetch(url)
-        let episode =  await result.json()
-        return episode
-
-    }
-
 
 }
 if (!customElements.get('character-card')) {
