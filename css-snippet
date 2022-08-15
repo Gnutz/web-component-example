@@ -1,5 +1,4 @@
-<style>
-      .isMAic {
+<style>.isMAic {
     flex: 3 1 0%;
     position: relative;
     padding: 0.75rem;
@@ -103,5 +102,4 @@ div {
 
 .isMAic .text-gray {
     color: rgb(158, 158, 158);
-}
-</style>
+} </style>
