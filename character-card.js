@@ -9,17 +9,6 @@ class CharacterCard extends HTMLElement {
          return id
     }
 
-
-    attributeChangedCallback(name, oldVal, newVal){
-        if (name === 'id'){
-            if (oldVal !== newVal && newVal <= this.NUMBEROFCHARACTERS) {
-                console.log(oldVal, newVal)
-                this.populateWithCharacter(newVal)
-              }
-        }
-    }
-
-
     async populateWithCharacter(id){
 
         let character = await this.getCharacterById(id)
