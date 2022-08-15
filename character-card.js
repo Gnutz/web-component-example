@@ -1,8 +1,6 @@
 import Template from './char-card-template.js'
 
 class CharacterCard extends HTMLElement {
-
-    static baseEpisodeApi = "https://rickandmortyapi.com/api/episode/"
     
     static NUMBEROFCHARACTERS = 826
 
@@ -33,9 +31,11 @@ class CharacterCard extends HTMLElement {
 
 
         let name = character["name"]
+        let image = character["image"]
         let status = character["status"]
         let species = character["species"]
         let location = character["location"]["name"]
+
 
         let episodeUrl =  character["episode"][0]
         let firstEpisode = (await this.getEpisodeByUrl(episodeUrl))["name"];
@@ -43,6 +43,7 @@ class CharacterCard extends HTMLElement {
 
         this.innerHTML = Template.render({
             name: name,
+            image: image,
             status: status,
             species: species,
             location: location,
