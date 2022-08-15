@@ -1,10 +1,10 @@
 class CharacterCard extends HTMLElement {
-/* 
-    static baseCharacerApi = "https://rickandmortyapi.com/api/character/"
+
+    static baseCharacterApi = "https://rickandmortyapi.com/api/character/"
 
     static baseEpisodeApi = "https://rickandmortyapi.com/api/episode/"
     
-    static NUMBEROFCHARACTERS = 826 */
+    static NUMBEROFCHARACTERS = 826
 
     
     getRandomId() {
@@ -17,7 +17,7 @@ class CharacterCard extends HTMLElement {
 
     attributeChangedCallback(name, oldVal, newVal){
         if (name === 'id'){
-          
+          //rerender
         }
     }
 
@@ -26,37 +26,14 @@ class CharacterCard extends HTMLElement {
     }
 
     
-    connectedCallback(){
+    async connectedCallback(){
 
-        let name = this.getAttribute("id");
+        let id = this.getAttribute("id");
+        let character = await this.getCharacterById(id)
 
-        let character=  JSON.parse(`{
-            "id": 25,
-            "name": "Armothy",
-            "status": "Dead",
-            "species": "unknown",
-            "type": "Self-aware arm",
-            "gender": "Male",
-            "origin": {
-            "name": "Post-Apocalyptic Earth",
-            "url": "https://rickandmortyapi.com/api/location/8"
-            },
-            "location": {
-            "name": "Post-Apocalyptic Earth",
-            "url": "https://rickandmortyapi.com/api/location/8"
-            },
-            "image": "https://rickandmortyapi.com/api/character/avatar/25.jpeg",
-            "episode": [
-            "https://rickandmortyapi.com/api/episode/23"
-            ],
-            "url": "https://rickandmortyapi.com/api/character/25",
-            "created": "2017-11-05T08:54:29.343Z"
-            }`)
-
-            name = character["name"]
-            let status = character["status"]
-            let species = character["species"]
-
+        let name = character["name"]
+        let status = character["status"]
+        let species = character["species"]
 
         this.innerHTML =`<article class="characterCard__Wrapper-sc-1ejywvi-0 bEklxv">
         <div class="characterCard__ImgWrapper-sc-1ejywvi-1 fkUcVI"><img src="https://rickandmortyapi.com/api/character/avatar/291.jpeg" alt="${name}"></div>
@@ -75,9 +52,14 @@ class CharacterCard extends HTMLElement {
            <div class="section"><span class="text-gray">First seen in:</span><a href="https://rickandmortyapi.com/api/episode/28" rel="nofollow noopener noreferrer" target="_blank" class="externalLink__ExternalLink-sc-1lixk38-0 ffGNdR">The Ricklantis Mixup</a></div>
         </div>
      </article>`
+     
     }
-
     
+    async getCharacterById(id){
+        let result = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
+        let character =  await result.json()
+        return character
+    }
 
 
 }
