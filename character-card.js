@@ -1,7 +1,5 @@
 class CharacterCard extends HTMLElement {
 
-    static baseCharacterApi = "https://rickandmortyapi.com/api/character/"
-
     static baseEpisodeApi = "https://rickandmortyapi.com/api/episode/"
     
     static NUMBEROFCHARACTERS = 826
@@ -30,10 +28,13 @@ class CharacterCard extends HTMLElement {
 
         let id = this.getAttribute("id");
         let character = await this.getCharacterById(id)
+        
+        let firstEoisode = await ["eoisode"][0]["id"]
 
         let name = character["name"]
         let status = character["status"]
         let species = character["species"]
+
 
         this.innerHTML =`<article class="characterCard__Wrapper-sc-1ejywvi-0 bEklxv">
         <div class="characterCard__ImgWrapper-sc-1ejywvi-1 fkUcVI"><img src="https://rickandmortyapi.com/api/character/avatar/291.jpeg" alt="${name}"></div>
@@ -54,11 +55,24 @@ class CharacterCard extends HTMLElement {
      </article>`
      
     }
-    
+
+
     async getCharacterById(id){
         let result = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
         let character =  await result.json()
         return character
+    }
+
+    async getRandomCharacter(){
+        let id = this.getRandomId()
+        return await this.getCharacterById(id)
+    }
+
+    async getEpisodeById(id){
+        let result = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
+        let episode =  await result.json()
+        return episode
+
     }
 
 
