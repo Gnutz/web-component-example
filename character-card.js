@@ -28,12 +28,15 @@ class CharacterCard extends HTMLElement {
 
         let id = this.getAttribute("id");
         let character = await this.getCharacterById(id)
-        
-        let firstEoisode = await ["eoisode"][0]["id"]
+
 
         let name = character["name"]
         let status = character["status"]
         let species = character["species"]
+        let location = character["location"]["name"]
+
+        let episodeUrl =  character["episode"][0]
+        let firstEpisode = (await this.getEpisodeByUrl(episodeUrl))["name"];
 
 
         this.innerHTML =`<article class="characterCard__Wrapper-sc-1ejywvi-0 bEklxv">
@@ -50,7 +53,9 @@ class CharacterCard extends HTMLElement {
            ${location}
            </a>
            </div>
-           <div class="section"><span class="text-gray">First seen in:</span><a href="https://rickandmortyapi.com/api/episode/28" rel="nofollow noopener noreferrer" target="_blank" class="externalLink__ExternalLink-sc-1lixk38-0 ffGNdR">The Ricklantis Mixup</a></div>
+           <div class="section"><span class="text-gray">First seen in:</span><a href="https://rickandmortyapi.com/api/episode/28" rel="nofollow noopener noreferrer" target="_blank" class="externalLink__ExternalLink-sc-1lixk38-0 ffGNdR">
+            ${firstEpisode}
+           </a></div>
         </div>
      </article>`
      
@@ -70,6 +75,13 @@ class CharacterCard extends HTMLElement {
 
     async getEpisodeById(id){
         let result = await fetch(`https://rickandmortyapi.com/api/character/${id}`)
+        let episode =  await result.json()
+        return episode
+
+    }
+
+    async getEpisodeByUrl(url){
+        let result = await fetch(url)
         let episode =  await result.json()
         return episode
 
