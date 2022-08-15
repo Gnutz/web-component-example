@@ -111,13 +111,13 @@ div {
 <div class="characterCard__ImgWrapper-sc-1ejywvi-1 fkUcVI"><img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="Rick Sanchez"></div>
 <div class="characterCard__ContentWrapper-sc-1ejywvi-2 isMAic">
    <div class="section">
-      <a href="https://rickandmortyapi.com/api/character/291" rel="nofollow noopener noreferrer" target="_blank" class="externalLink__ExternalLink-sc-1lixk38-0 ffGNdR">
-         <h2><slot name="name">"Rick Sanchez"</slot></h2>
+      <a href="https://rickandmortyapi.com/api/character/291" rel="nofollow noopener noreferrer" target="_blank">
+         <h2><slot name="name">Rick Sanchez</slot></h2>
       </a>
       <span class="status"><span class="status__icon"></span> <slot name="status">"Alive</slot>  &nbsp;-&nbsp;  <slot name="species">"Human"</slot></span>
    </div>
    <div class="section"><span class="text-gray">Last known location:</span>
-   <a href="https://rickandmortyapi.com/api/location/3" rel="nofollow noopener noreferrer" target="_blank" class="externalLink__ExternalLink-sc-1lixk38-0 ffGNdR">
+   <a href="https://rickandmortyapi.com/api/location/3">
    <slot name="location">"Citadel of Ricks"</slot>
    </a>
    </div>
@@ -141,7 +141,6 @@ class CharacterCard extends HTMLElement {
         character = {}
         this.shadowRoot.innerHTML = '';
         this.shadowRoot.appendChild(template.content.cloneNode(true))
-        this.shadowRoot.querySelector('img').src = character[""]
 
     }
 
